@@ -8,7 +8,7 @@ PULL_REQUEST_NUMBER=$(jq .number "$GITHUB_EVENT_PATH")
 # If this is a PR and Amplify is configured, plan to check the deploy preview and generate its unique URL.
 # Otherwise, simply check the provided live URL.
 if [ -n "$INPUT_AMPLIFY_SITE" ] && [ -n "$PULL_REQUEST_NUMBER" ] && [ "$PULL_REQUEST_NUMBER" != "null" ]; then
-  REPORT_URL="https://pr-$PULL_REQUEST_NUMBER--$INPUT_AMPLIFY_SITE"
+  REPORT_URL="https://pr-$PULL_REQUEST_NUMBER.$INPUT_AMPLIFY_SITE"
 else
   REPORT_URL=$INPUT_URL
 fi
