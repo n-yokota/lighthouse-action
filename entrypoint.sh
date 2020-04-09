@@ -5,6 +5,9 @@ set -e
 # Check if we're being triggered by a pull request.
 PULL_REQUEST_NUMBER=$(jq .number "$GITHUB_EVENT_PATH")
 
+printf "* environment variable pull_request_number %s ...\n" "$PULL_REQUEST_NUMBER"
+printf "* environment variable amplify_site %s ...\n" "$INPUT_AMPLIFY_SITE"
+
 # If this is a PR and Amplify is configured, plan to check the deploy preview and generate its unique URL.
 # Otherwise, simply check the provided live URL.
 if [ -n "$INPUT_AMPLIFY_SITE" ] && [ -n "$PULL_REQUEST_NUMBER" ] && [ "$PULL_REQUEST_NUMBER" != "null" ]; then
